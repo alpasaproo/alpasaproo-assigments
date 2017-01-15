@@ -1,0 +1,11 @@
+#!/bin/bash
+#mention Internal Field Separator
+IFS=$','
+for i in `cat list`
+do
+echo $i > hosts
+#this got us the hostnames one below the other
+#parallel-ssh will execute commands remotely as well as in prompt
+pssh -i -h hosts -A -O StrictHostKeyChecking=no "export DISPLAY=IP address:0.0; xterm -e bash"
+done
+unset IFS
